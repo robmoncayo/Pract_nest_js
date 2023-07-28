@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { Items, ItemDocument } from './schema/items.schema';
+import { Items, ItemsDocument } from './schema/items.schema';
 import { Model } from 'mongoose';
 
 @Injectable()
 export class ItemsService {
   constructor(
-    @InjectModel(Items.name) private itemsModule: Model<ItemDocument>,
+    @InjectModel(Items.name) private itemsModule: Model<ItemsDocument>,
   ) {}
 
   async create(createItemDto: CreateItemDto) {

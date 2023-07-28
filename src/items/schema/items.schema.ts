@@ -4,18 +4,18 @@ import { Document } from "mongoose";
 
 //TODO Los Schemas de items 
 
-export type ItemDocument = Items & Document;
+export type ItemsDocument = Items & Document;
 
 @Schema()
 export class Items {
-  @Prop({require:true})
-  email: string;
+  @Prop()
+  name: string;
 
   @Prop()
-  age: number;
+  price: number;
 
   @Prop()
-  breed: string;
+  description: string;
 }
 
-export const ItemSchema = SchemaFactory.createForClass(Items);
+export const ItemsSchema = SchemaFactory.createForClass(Items);
