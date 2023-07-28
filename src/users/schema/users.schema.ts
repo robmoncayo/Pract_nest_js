@@ -5,10 +5,10 @@ import { Document } from "mongoose";
 //TODO Los Schemas de items 
 
 
-export type ItemsDocument = Items & Document;
+export type UserDocument = User & Document;
 
 @Schema()
-export class Items {
+export class User {
   @Prop()
   name: string;
 
@@ -19,5 +19,7 @@ export class Items {
   description: string;
 }
 
+export type UsersDocument = User & Document;
 
-export const ItemsSchema = SchemaFactory.createForClass(Items);
+
+export const UserSchema = SchemaFactory.createForClass(User);
