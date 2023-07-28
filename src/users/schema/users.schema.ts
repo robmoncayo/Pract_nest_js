@@ -2,7 +2,7 @@ import { Prop, Schema,SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 
 
-//TODO Los Schemas de items 
+//TODO Los Schemas de User 
 
 
 export type UserDocument = User & Document;
@@ -13,13 +13,11 @@ export class User {
   name: string;
 
   @Prop()
-  price: number;
+  email: string;
 
   @Prop()
-  description: string;
+  password: string;
 }
-
-export type UsersDocument = User & Document;
 
 
 export const UserSchema = SchemaFactory.createForClass(User);
