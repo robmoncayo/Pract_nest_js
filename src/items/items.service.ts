@@ -18,7 +18,8 @@ export class ItemsService {
   }
   
   findAll() {
-    return `This action returns all items`;
+    const list = this.itemsModule.find([]);
+    return list;
   }
 
   findOne(id: number) {
