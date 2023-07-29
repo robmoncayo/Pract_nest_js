@@ -6,6 +6,7 @@ import { User } from 'src/users/schema/users.schema';
 import { Model } from 'mongoose';
 import { hash, compare } from 'bcrypt';
 import { LoginAuthDto } from './dto/login-auth.dto';
+import { JwtService } from '@nestjs/jwt';
 
 
 
@@ -13,7 +14,7 @@ import { LoginAuthDto } from './dto/login-auth.dto';
 export class AuthService {
     constructor(
         @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
-
+        private jwtAuthService:JwtService
     ){}
 
       async  register(userObject:RegisterAuthDto) {
@@ -32,7 +33,13 @@ export class AuthService {
 
           if (!checkPassword) throw new HttpException('PASSWORD_INCORRECT', 403)
 
-          const data = findUser
+          const payload = {id:findUser._id, name: findUser.name};
+          const token = await this.jwtAuthService.sign(payload);
+
+          const data = {
+            user: findUser,
+            token
+          }
 
           return data
         }

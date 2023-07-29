@@ -5,6 +5,7 @@ import { ItemsModule } from './items/items.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { UserController } from './users/users.controller'; // Agrega esta línea
 
 @Module({
   imports: [
@@ -13,8 +14,7 @@ import { UsersModule } from './users/users.module';
     AuthModule,
     UsersModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, UserController], // Agrega UserController aquí
   providers: [AppService],
-  
 })
 export class AppModule {}

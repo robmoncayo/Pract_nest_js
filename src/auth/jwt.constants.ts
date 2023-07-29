@@ -1,4 +1,4 @@
-export const jwtConstanst = {
+export const jwtConstants = {
 secret: 'Mi semilla secreta'
 
 }
