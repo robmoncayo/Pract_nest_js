@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { UserDocument } from 'src/users/schema/users.schema';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { User } from 'src/users/schema/users.schema';
 import { Model } from 'mongoose';
-import { hash } from 'bcrypt';
+import { hash, compare } from 'bcrypt';
+import { LoginAuthDto } from './dto/login-auth.dto';
 
 
 
@@ -22,6 +23,18 @@ export class AuthService {
         return this.userModel.create(userObject)
         }
 
-        login() {}
+      async login(userObjectLogin:LoginAuthDto) {
+        const{ email, password } = userObjectLogin; //
+          const findUser = await this.userModel.findOne({ email});
+          if(!findUser) throw new HttpException ('USER_NOT_FOUND', 404)
+
+          const checkPassword = await compare(password, findUser.password);
+
+          if (!checkPassword) throw new HttpException('PASSWORD_INCORRECT', 403)
+
+          const data = findUser
+
+          return data
+        }
 
 }

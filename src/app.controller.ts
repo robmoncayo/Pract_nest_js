@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 //TODO http://localhost:3000/
@@ -11,7 +11,8 @@ export class AppController {
   getUsers(): string []{
     return this.appService.getUsers(); 
   }
-
+  @Post()
+  
   @Get()
   getHello(): string {
     return this.appService.getHello();
